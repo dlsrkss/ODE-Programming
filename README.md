@@ -464,3 +464,94 @@ Matrix matAinv = copyMat(matA);
 invMat(matA, matAinv);
 ```
 - - -
+
+
+## Eigenvalue & Eigenvector
+### QRHousehold()
+_QR factorization_
+
+```C
+void QRHousehold(Matrix A, Matrix Q, Matrix R)
+```
+
+#### parameter
+* __A__ :  Matrix A in structure Matrix form. Should be (nxn) square
+* __Q__ :  Matrix Q in structure Matrix form. Should be (nxn) square
+* __R__ :  Matrix R in structure Matrix form. Should be (nxn) square
+
+#### example code
+```C
+Matrix matA = txt2Mat(path, "prob_matA");
+Matrix matQ = copyMat(matA);
+Matrix matR = copyMat(matA);
+
+QRHousehold(matA, matQ, matR);
+```
+- - -
+
+
+
+### eig()
+_eigenvalue_
+
+```C
+Matrix eig(Matrix A)
+```
+
+#### parameter
+* __A__ :  Matrix A in structure Matrix form. Should be (nxn) square
+
+
+#### example code
+apply QRHousehold internal
+```C
+Matrix matA = txt2Mat(path, "prob_matA");
+
+eigenvalue = eig(matA);
+```
+- - -
+
+
+
+
+### eigvec()
+_eigenvector_
+
+```C
+Matrix eigvec(Matrix A)
+```
+
+#### parameter
+* __A__ :  Matrix A in structure Matrix form. Should be (nxn) square
+
+
+#### example code
+apply invMat internal
+```C
+Matrix matA = txt2Mat(path, "prob_matA");
+
+eigenvector = eigvec(matA);
+```
+- - -
+
+
+## ODE-IVP
+### odeEU()
+_solve ordinary differential equation using euler method ordinary_
+
+```C
+void odeEU(double myfunc(const double t, const double y), double y[], double t0, double tf, double h, double y0)
+```
+
+#### parameter
+* __myfunc__ :  Matrix A in structure Matrix form. Should be (nxn) square
+
+
+#### example code
+apply invMat internal
+```C
+Matrix matA = txt2Mat(path, "prob_matA");
+
+eigenvector = eigvec(matA);
+```
+- - -
