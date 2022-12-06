@@ -537,21 +537,173 @@ eigenvector = eigvec(matA);
 
 ## ODE-IVP
 ### odeEU()
-_solve ordinary differential equation using euler method ordinary_
+_solve ordinary differential equation using Euler explicit method ordinary_
 
 ```C
 void odeEU(double myfunc(const double t, const double y), double y[], double t0, double tf, double h, double y0)
 ```
 
 #### parameter
-* __myfunc__ :  Matrix A in structure Matrix form. Should be (nxn) square
+* __myfunc__ :  function with t, y
+* __y[]__ :  allocated array y
+* __t0__ : initial time value
+* __tf__ : final time value
+* __h__ : interval value
+* __y0__ : initial y value
 
 
 #### example code
-apply invMat internal
 ```C
-Matrix matA = txt2Mat(path, "prob_matA");
+double  t0 = 0; double tf = 0.1;
+double h = 0.001;
+double N = (tf - t0) / h + 1;
+double t = 0;
+double* y = (double*)malloc(sizeof(double) * N);
+double y0 = 0;
 
-eigenvector = eigvec(matA);
+/*double myfunc(const double t, const double y)
+{
+	int i = 0;
+	double tau = 1;
+	double T = 1 / tau;
+	double f = 10;
+	double Vm = 1;
+	double w = 2 * PI * f * t;
+	double funcx = -T * y + 1 * Vm * cos(w);
+	return funcx;
+}*/
+
+odeEU(myfunc, y, t0, tf, h, y0);
 ```
 - - -
+
+
+
+### odeEM()
+_solve ordinary differential equation using Euler Modified method ordinary_
+
+```C
+void odeEM(double myfunc(const double t, const double y), double y[], double t0, double tf, double h, double y0)
+```
+
+#### parameter
+* __myfunc__ :  function with t, y
+* __y[]__ :  allocated array y
+* __t0__ : initial time value
+* __tf__ : final time value
+* __h__ : interval value
+* __y0__ : initial y value
+
+
+#### example code
+```C
+double  t0 = 0; double tf = 0.1;
+double h = 0.001;
+double N = (tf - t0) / h + 1;
+double t = 0;
+double* y = (double*)malloc(sizeof(double) * N);
+double y0 = 0;
+
+/*double myfunc(const double t, const double y)
+{
+	int i = 0;
+	double tau = 1;
+	double T = 1 / tau;
+	double f = 10;
+	double Vm = 1;
+	double w = 2 * PI * f * t;
+	double funcx = -T * y + 1 * Vm * cos(w);
+	return funcx;
+}*/
+
+odeEM(myfunc, y, t0, tf, h, y0);
+```
+- - -
+
+
+
+
+### odeRK2()
+_solve ordinary differential equation using Runge-Kutta second method ordinary_
+
+```C
+void odeRK2(double myfunc(const double t, const double y), double y[], double t0, double tf, double h, double y0)
+```
+
+#### parameter
+* __myfunc__ :  function with t, y
+* __y[]__ :  allocated array y
+* __t0__ : initial time value
+* __tf__ : final time value
+* __h__ : interval value
+* __y0__ : initial y value
+
+
+#### example code
+```C
+double  t0 = 0; double tf = 0.1;
+double h = 0.001;
+double N = (tf - t0) / h + 1;
+double t = 0;
+double* y = (double*)malloc(sizeof(double) * N);
+double y0 = 0;
+
+/*double myfunc(const double t, const double y)
+{
+	int i = 0;
+	double tau = 1;
+	double T = 1 / tau;
+	double f = 10;
+	double Vm = 1;
+	double w = 2 * PI * f * t;
+	double funcx = -T * y + 1 * Vm * cos(w);
+	return funcx;
+}*/
+
+odeRK2(myfunc, y, t0, tf, h, y0);
+```
+- - -
+
+
+
+### odeRK3()
+_solve ordinary differential equation using Runge-Kutta third method ordinary_
+
+```C
+void odeRK2(double myfunc(const double t, const double y), double y[], double t0, double tf, double h, double y0)
+```
+
+#### parameter
+* __myfunc__ :  function with t, y
+* __y[]__ :  allocated array y
+* __t0__ : initial time value
+* __tf__ : final time value
+* __h__ : interval value
+* __y0__ : initial y value
+
+
+#### example code
+```C
+double  t0 = 0; double tf = 0.1;
+double h = 0.001;
+double N = (tf - t0) / h + 1;
+double t = 0;
+double* y = (double*)malloc(sizeof(double) * N);
+double y0 = 0;
+
+/*double myfunc(const double t, const double y)
+{
+	int i = 0;
+	double tau = 1;
+	double T = 1 / tau;
+	double f = 10;
+	double Vm = 1;
+	double w = 2 * PI * f * t;
+	double funcx = -T * y + 1 * Vm * cos(w);
+	return funcx;
+}*/
+
+odeRK2(myfunc, y, t0, tf, h, y0);
+```
+- - -
+
