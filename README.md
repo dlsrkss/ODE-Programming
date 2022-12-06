@@ -190,7 +190,7 @@ printVec(dx2dt2, m);
 
 ## Integarion
 ### IntegrateRect()
-_Integration using Rectangular method for discrete data inputs_
+_Integration using Rectangular method for discrete data inputs_  
 <img src="https://user-images.githubusercontent.com/116098075/205697135-40bdff8d-8cc6-40e9-9e24-6bc339c95ee8.png" width ="400" height="300"> 
 ```C
 double IntegrateRect(double x[], double y[], int m)
@@ -241,7 +241,7 @@ printf("I_trapz = %f\n\n", I_trapz);
 
 
 ### Simpson13()
-_Integration using Simpson 1/3 method for discrete data inputs_
+_Integration using Simpson 1/3 method for discrete data inputs_  
 <img src="https://user-images.githubusercontent.com/116098075/205697964-9efb339c-109c-4c02-8bea-212a5b27f5de.png" width="400" height="300"> 
 ```C
 double simpson13(double x[], double y[], int m) {
@@ -266,7 +266,7 @@ double I_simpson = simpson13(x, y, M);
 
 
 ### Simpson38()
-_Integration using Simpson 3/8 method for discrete data inputs_
+_Integration using Simpson 3/8 method for discrete data inputs_  
 <img src="https://user-images.githubusercontent.com/116098075/205698721-d2322603-efe3-404c-946a-8872bc25e084.png" width="400" height="300"> 
 ```C
 double simpson38(double x[], double y[], int m) {
