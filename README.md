@@ -542,7 +542,26 @@ _solve ordinary differential equation using Euler explicit method ordinary_
 ```C
 void odeEU(double myfunc(const double t, const double y), double y[], double t0, double tf, double h, double y0)
 ```
+### odeEM()
+_solve ordinary differential equation using Euler Modified method ordinary_
 
+```C
+void odeEM(double myfunc(const double t, const double y), double y[], double t0, double tf, double h, double y0)
+```
+
+### odeRK2()
+_solve ordinary differential equation using Runge-Kutta second method ordinary_
+
+```C
+void odeRK2(double myfunc(const double t, const double y), double y[], double t0, double tf, double h, double y0)
+```
+
+### odeRK3()
+_solve ordinary differential equation using Runge-Kutta third method ordinary_
+
+```C
+void odeRK3(double myfunc(const double t, const double y), double y[], double t0, double tf, double h, double y0)
+```
 #### parameter
 * __myfunc__ :  function with t, y
 * __y[]__ :  allocated array y
@@ -574,136 +593,118 @@ double y0 = 0;
 }*/
 
 odeEU(myfunc, y, t0, tf, h, y0);
-```
-- - -
-
-
-
-### odeEM()
-_solve ordinary differential equation using Euler Modified method ordinary_
-
-```C
-void odeEM(double myfunc(const double t, const double y), double y[], double t0, double tf, double h, double y0)
-```
-
-#### parameter
-* __myfunc__ :  function with t, y
-* __y[]__ :  allocated array y
-* __t0__ : initial time value
-* __tf__ : final time value
-* __h__ : interval value
-* __y0__ : initial y value
-
-
-#### example code
-```C
-double  t0 = 0; double tf = 0.1;
-double h = 0.001;
-double N = (tf - t0) / h + 1;
-double t = 0;
-double* y = (double*)malloc(sizeof(double) * N);
-double y0 = 0;
-
-/*double myfunc(const double t, const double y)
-{
-	int i = 0;
-	double tau = 1;
-	double T = 1 / tau;
-	double f = 10;
-	double Vm = 1;
-	double w = 2 * PI * f * t;
-	double funcx = -T * y + 1 * Vm * cos(w);
-	return funcx;
-}*/
-
 odeEM(myfunc, y, t0, tf, h, y0);
+odeRK2(myfunc, y, t0, tf, h, y0);
+odeRK3(myfunc, y, t0, tf, h, y0);
 ```
 - - -
 
 
 
-
-### odeRK2()
-_solve ordinary differential equation using Runge-Kutta second method ordinary_
-
+### sys2RK2()
+_solve secondary differential equation using Runge-Kutta second method ordinary_  
+<img src="https://user-images.githubusercontent.com/116098075/205846940-038b878e-ff40-4808-8d0b-46d4c32e89ee.png" width="300" height="80"> 
+<img src="https://user-images.githubusercontent.com/116098075/205846677-8e1aabfa-f54f-4ad6-a2b8-5907786599f1.png" width="400" height="80"> 
+<img src="https://user-images.githubusercontent.com/116098075/205847104-bf7a0b49-4287-45b5-a76a-6aae576f397e.png" width="400" height="150"> 
 ```C
-void odeRK2(double myfunc(const double t, const double y), double y[], double t0, double tf, double h, double y0)
+void sys2RK2(void mckfunc(const double t, const double Y[], double dYdt[]), double y1[], double y2[], double t0, double tf, double h, double y1_init, double y2_init)
 ```
 
 #### parameter
-* __myfunc__ :  function with t, y
-* __y[]__ :  allocated array y
+* __mckfunc__ :  function with t, y, dydt
+* __y1[]__ :  y, ex) y[0] = y, y[1] = dy/dt
+* __y2[]__ :  z, ex) z[0] = dy/dt, z[1] = d2y/dt2
 * __t0__ : initial time value
 * __tf__ : final time value
 * __h__ : interval value
-* __y0__ : initial y value
+* __y1__ : initial y value
+* __y2__ : initial dy/dt value
 
 
 #### example code
 ```C
-double  t0 = 0; double tf = 0.1;
-double h = 0.001;
+double t0 = 0; double tf = 1;
+double h = 0.01;
 double N = (tf - t0) / h + 1;
 double t = 0;
-double* y = (double*)malloc(sizeof(double) * N);
-double y0 = 0;
+double* y1 = (double*)malloc(sizeof(double) * N); //y함수
+double* y2 = (double*)malloc(sizeof(double) * N); //z함수
+double y1_init = 0;
+double y2_init = 0.2;
 
-/*double myfunc(const double t, const double y)
+/*
+void mckfunc(const double t, const double Y[], double dYdt[])
 {
-	int i = 0;
-	double tau = 1;
-	double T = 1 / tau;
-	double f = 10;
-	double Vm = 1;
-	double w = 2 * PI * f * t;
-	double funcx = -T * y + 1 * Vm * cos(w);
-	return funcx;
-}*/
+	double m = 1; double c = 7; double k = 6.9; double f = 5;
+	double Fin = 2 * cos(2 * PI * f * t); 
+	dYdt[0] = Y[1]; //1번째 풀어야 할 미방식
 
-odeRK2(myfunc, y, t0, tf, h, y0);
+
+	// EXERCISE: MODIFY HERE
+	dYdt[1] = -Y[1] * c / m - Y[0] * k / m + Fin / m; //z값
+}
+*/
+
+sys2RK2(mckfunc, y1, y2, t0, tf, h, y1_init, y2_init);
 ```
 - - -
 
 
 
-### odeRK3()
-_solve ordinary differential equation using Runge-Kutta third method ordinary_
-
+## Linear Regression
+### linearRegression()
+_straight line that fits the data_
 ```C
-void odeRK2(double myfunc(const double t, const double y), double y[], double t0, double tf, double h, double y0)
+Matrix	linearRegression(Matrix _x, Matrix _y)
 ```
 
 #### parameter
-* __myfunc__ :  function with t, y
-* __y[]__ :  allocated array y
-* __t0__ : initial time value
-* __tf__ : final time value
-* __h__ : interval value
-* __y0__ : initial y value
-
-
+* __x__ :  x data array Matrix. should be (nx1)
+* __y__ :  y data array Matrix. should be (nx1)
 #### example code
 ```C
-double  t0 = 0; double tf = 0.1;
-double h = 0.001;
-double N = (tf - t0) / h + 1;
-double t = 0;
-double* y = (double*)malloc(sizeof(double) * N);
-double y0 = 0;
+int M = 6; //number of data
+double T_array[] = { 30, 40, 50, 60, 70, 80 };
+double P_array[] = { 1.05, 1.07, 1.09, 1.14, 1.17, 1.21 };
+Matrix T = arr2Mat(T_array, M, 1);
+Matrix P = arr2Mat(P_array, M, 1);
 
-/*double myfunc(const double t, const double y)
-{
-	int i = 0;
-	double tau = 1;
-	double T = 1 / tau;
-	double f = 10;
-	double Vm = 1;
-	double w = 2 * PI * f * t;
-	double funcx = -T * y + 1 * Vm * cos(w);
-	return funcx;
-}*/
+Matrix z = linearRegression(T, P);
+double answer = z.at[0][0] * 100 + z.at[1][0]; //particular y-point at x-point
 
-odeRK2(myfunc, y, t0, tf, h, y0);
+printMat(T, "T");
+printMat(P, "P");
+printMat(z, "z");
+printf("answer = %lf \n", answer);
 ```
 - - -
+
+
+
+### polyfit()
+_curve that fits the data_
+```C
+void polyfit(Matrix _x, Matrix _y, Matrix _z, int n)
+```
+
+#### parameter
+* __x__ :  x data array Matrix. should be (nx1)
+* __y__ :  y data array Matrix. should be (nx1)
+* __z__ : coefficient Matrix. should be ((n+1)x1)
+* __n__ : curve function order
+#### example code
+```C
+int n = 4; // curve function order
+double strain[] = { 0, 0.4, 0.8, 1.2, 1.6, 2.0, 2.4, 2.8, 3.2, 3.6, 4.0, 4.4, 4.8, 5.2, 5.6, 6.0 };
+double stress[] = {0, 3, 4.5, 5.8, 5.9, 5.8, 6.2, 7.4, 9.6, 15.6, 20.7, 26.7, 31.1, 35.6, 39.3, 41.5};
+
+Matrix Strain = arr2Mat(strain, N, 1);
+Matrix Stress = arr2Mat(stress, N, 1);
+Matrix a = zeros(n+1, 1); //function coefficient
+
+polyfit(Strain, Stress, a, n);
+printMat(a, "a");
+```
+- - -
+
 
