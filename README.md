@@ -1,3 +1,154 @@
+# myMatrix Source code
+>## createMat
+
+```C
+Matrix createMat(int _rows, int _cols);
+```
+>>- __parameter__
+>>1. int __rows__ : rows of Matrix
+>>2. int __cols__ : rows of Matrix
+
+>__Example code__
+```C
+Matrix A = createMat(2, 3);
+Matrix A = createMat(5, 5);
+```
+
+
+>## printMat
+
+```C
+void printMat(Matrix _A, const char* _name)
+```
+>>- __parameter__
+>>1. ___A__ : printed Matrix
+>>2. ___name__ : title
+
+>__Example code__
+```C
+printMat(matA, "matA");
+printMat(matB, "matB");
+```
+
+
+>## mulScalar
+
+```C
+Matrix mulScalar(Matrix _A, double B)
+```
+>>- __parameter__
+>>1. ___A__ : subject Matrix A
+>>2. ___B__ : scalar number
+
+>__Example code__
+```C
+Matrix X = mulScalar(matA, 2);
+Matrix X = mulScalar(matB, 5);
+```
+
+
+>## mulMat
+
+```C
+Matrix mulMat(Matrix _A, Matrix _B);
+```
+>>- __parameter__
+>>1. __A__ : first Matrix 
+>>2. __B__ : second Matrix
+
+>__Example code__
+```C
+mulMat(matA, matB);
+```
+
+>## initMat
+
+```C
+void	initMat(Matrix _A, double _val);
+```
+>>- __parameter__
+>>1. __A__ : subject Matrix 
+>>2. __B__ : initial value
+
+>__Example code__
+```C
+initMat(matA, 1);
+```
+
+
+>## zeros
+
+```C
+Matrix	zeros(int _rows, int _cols);
+```
+>>- __parameter__
+>>1. ___rows__ : rows of Matrix
+>>2. ___cols__ : columns of Matrix
+
+>__Example code__
+```C
+Matrix X = zeros(3, 4);
+```
+
+>## ones
+create Matrix of all zeros
+
+```C
+Matrix	ones(int _rows, int _cols);
+```
+>>- __parameter__
+>>1. ___rows__ : rows of Matrix
+>>2. ___cols__ : columns of Matrix
+
+>__Example code__
+```C
+Matrix X = ones(3, 3);
+```
+
+
+>## transpose
+
+```C
+Matrix transpose(Matrix _A);
+```
+>>- __parameter__
+>>1. __A__ : subject Matrix 
+
+>__Example code__
+```C
+transpose(matA);
+```
+
+>## copyMat
+
+```C
+Matrix	copyMat(Matrix _A);
+```
+>>- __parameter__
+>>1. __A__ : subject Matrix 
+
+>__Example code__
+```C
+matB = copyMat(matA);
+```
+
+>## copyVal
+
+```C
+void copyVal(Matrix _A, Matrix _B);
+```
+>>- __parameter__
+>>1. ___A__ : subject Matrix 
+>>2. ___B__ : replicated Matrix 
+
+>__Example code__
+```C
+copyVal(matA, matB);
+```
+
+
+
+
 # Practice
 These functions are useful tools for making any function in Numerical Programming Class
 
